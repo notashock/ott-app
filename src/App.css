@@ -1,12 +1,77 @@
 .App {
   text-align: center;
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav{
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(24, 85, 24, 0.49);
+  color: white;
+  padding: 0.625rem;
+  max-height: 16.25rem;
+  border-radius: 1em;
+  margin: 0.4em;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
 }
-
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 10em;
+  gap: 5em;
+}
+.nav-bar .home{
+  cursor: pointer;
+}
+.btn{
+  width: 5em;
+  height: 2em;
+  position: relative;
+  right: 1em;
+  align-content: center;
+  background-color:  #283a2b;
+  border-radius: 12em;
+  
+}
+.btn:hover{
+  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+  cursor: pointer;
+}
+main{
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  color: #ffffff;
+  background-color: rgba(24, 85, 24, 0.49);
+  border-radius: 1em;
+  margin: 0.4em;
+}
+.movie-list{
+  display: inline-flex;
+  gap: 0.3em;
+  justify-content: flex-start;
+  align-items: start;
+  justify-items: start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.mv-card{
+  width: 10em;
+  height: 15em;
+  background-color: #283a2b;
+  color: #ffffff;
+  border-radius: 0.4em;
+  padding: 1em;
+  margin: 1em;
+}
+.mv-card:hover{
+  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+  cursor: pointer;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
