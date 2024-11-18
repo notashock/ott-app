@@ -1,17 +1,21 @@
 .App {
   text-align: center;
   font-size: 16px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+@font-face {
+  font-family: 'Lexend-Regular';
+  src: url('../src/fonts/Lexend-Regular.ttf') format('truetype');
 }
 nav{
   display: flex;
   flex-direction: row;
-  background-color: rgba(24, 85, 24, 0.49);
+  background-color: rgba(135, 212, 135, 0.166);
   color: white;
-  padding: 0.625rem;
+  padding: 0.6rem 2em 0.6em 8em;
   max-height: 16.25rem;
-  border-radius: 1em;
+  border-radius: 1.2em;
   margin: 0.4em;
+  box-shadow: rgba(252, 251, 251, 0.348) 0.2rem 0.125rem 0.125rem;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
@@ -19,35 +23,76 @@ nav{
 .nav-bar{
   display: flex;
   flex-direction: row;
-  position: relative;
-  left: 10em;
   gap: 5em;
 }
-.nav-bar .home{
+.nav-bar .Movies{
   cursor: pointer;
+}
+.nav-bar .Watchlist{
+  cursor: pointer;  
+}
+.search-btn{
+  display: flex;
+  gap: 2em;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.search-bar{
+  display: flex;
+  flex-direction: row;
+  width: 15em;
+  height: 2em;
+  padding: 0em 0em 0em 0.2em;
+  border-radius: 0.8em;
+  background-color: #417a4b;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+}
+.search-bar:hover{
+  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+}
+#search{
+  width: 15em;
+  height: 1.5em;
+  background-color: #ffffff00;
+  border: 0em;
+}
+#search::placeholder{
+  position: relative;
+  top: 0.2em;
+  left: 0.2em;
+  color: #ffffff;
+  font-size: 1.2em;
+  border: 0em;
+}
+#search:focus{
+  outline: none;
+  color: #ffffff;
 }
 .btn{
   width: 5em;
   height: 2em;
-  position: relative;
-  right: 1em;
   align-content: center;
-  background-color:  #283a2b;
-  border-radius: 12em;
-  
+  background-color:  #417a4b;
+  border-radius: 0.8em;
 }
 .btn:hover{
-  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+  box-shadow: rgba(82, 119, 85, 0.348) 0.2rem 0.125rem 0.125rem;
   cursor: pointer;
 }
 main{
-  display: flex;
-  flex-direction: row;
-  align-items: left;
-  color: #ffffff;
-  background-color: rgba(24, 85, 24, 0.49);
-  border-radius: 1em;
-  margin: 0.4em;
+  min-height: 30em;
+    display: flex;
+    flex-direction: row;
+    color: #ffffff;
+    background-color: rgba(38, 115, 38, 0.847);
+    border-radius: 1em;
+    margin: 0.4em;
+    box-shadow: rgba(10, 35, 1, 0.348) 0.5rem 0.2rem 0.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 .movie-list{
   display: inline-flex;
@@ -60,8 +105,9 @@ main{
   flex-direction: row;
 }
 .mv-card{
-  width: 10em;
-  height: 15em;
+  max-width: 10em;
+  max-height: 15em;
+  font-weight: 100;
   background-color: #283a2b;
   color: #ffffff;
   border-radius: 0.4em;
@@ -69,7 +115,7 @@ main{
   margin: 1em;
 }
 .mv-card:hover{
-  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+  box-shadow: rgba(0, 0, 0, 0.348) 0.3rem 0.2rem 0.2rem;
   cursor: pointer;
 }
 @media (prefers-reduced-motion: no-preference) {
