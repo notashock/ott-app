@@ -82,7 +82,7 @@ nav{
   flex-direction: row;
   width: 15em;
   height: 2em;
-  padding: 0em 0em 0em 0.2em;
+  /* padding: 0em 0em 0em 0.2em; */
   border-radius: 0.8em;
   background-color: #FF8566;
   flex-wrap: wrap;
@@ -95,8 +95,8 @@ nav{
   transform: translateY(-0.1em);
 }
 #search{
-  width: 15em;
-  height: 1.5em;
+  width: 16em;
+  height: 2em;
   background-color: #ffffff00;
   border: 0em;
 }
@@ -122,7 +122,9 @@ nav{
 }
 .btn:hover{
   box-shadow: 0 2em 4em rgba(0, 0, 0, 0.3), 0 -2em 6em rgba(0, 0, 0, 0.3);
-  transform: translateY(-0.1em);}
+  transform: translateY(-0.1em);
+  cursor: pointer;
+}
 main{
   min-height: 30em;
     display: flex;
