@@ -1,5 +1,10 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  margin: 0em;
+  gap: 0.2em;
   text-align: center;
+  font-family: Lexend-Regular;
   font-size: 16px;
 }
 @font-face {
@@ -8,28 +13,63 @@
 }
 nav{
   display: flex;
-  flex-direction: row;
-  background-color: rgba(135, 212, 135, 0.166);
-  color: white;
-  padding: 0.6rem 2em 0.6em 8em;
-  max-height: 16.25rem;
-  border-radius: 1.2em;
-  margin: 0.4em;
-  box-shadow: rgba(252, 251, 251, 0.348) 0.2rem 0.125rem 0.125rem;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
+      flex-direction: row;
+      background-color: #2C2C2C;
+      color: white;
+      padding: 0.6rem 2em 0.6em 8em;
+      max-height: 16.25rem;
+      border-radius: 1.2em;
+      margin: 0.8em 0.4em 0.4em 0.4em;
+      box-shadow: #FF8566 0.2em 0.2em 0.8em, #FF8566 -0.2rem -0.2rem 0.8em;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
 }
 .nav-bar{
   display: flex;
   flex-direction: row;
-  gap: 5em;
+  gap: 3em;
 }
 .nav-bar .Movies{
-  cursor: pointer;
+  display: flex;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4em 4em rgba(0, 0, 0, 0.3), 0 -4em 6em rgba(0, 0, 0, 0.3);      cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+.Movies_active{
+  display: flex;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  justify-content: center;
+  align-items: center;
+  box-shadow: #FF8566 0.01em 0.01em 0.5em, #FF8566 -0.01rem -0.01rem 0.4em;
+  transform: translateY(-0.1em);
+}
+
 .nav-bar .Watchlist{
-  cursor: pointer;  
+  display: flex;
+  width: 6em;
+  height: 2em;
+  border-radius: 1em;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4em 4em rgba(0, 0, 0, 0.3), 0 -4em 6em rgba(0, 0, 0, 0.3);      cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.Watchlist_active{
+  display: flex;
+  width: 6em;
+  height: 2em;
+  border-radius: 1em;
+  justify-content: center;
+  align-items: center;  
+  box-shadow: #FF8566 0em 0.01em 0.5em, #FF8566 -0em -0.01rem 0.4em;
+  transform: translateY(-0.1em);
 }
 .search-btn{
   display: flex;
@@ -44,13 +84,15 @@ nav{
   height: 2em;
   padding: 0em 0em 0em 0.2em;
   border-radius: 0.8em;
-  background-color: #417a4b;
+  background-color: #FF8566;
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-around;
+  transition: all 0.2s ease-in-out;
 }
 .search-bar:hover{
-  box-shadow: rgba(0, 0, 0, 0.348) 0.2rem 0.125rem 0.125rem;
+  box-shadow: 0 2em 4em rgba(0, 0, 0, 0.3), 0 -2em 6em rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.1em);
 }
 #search{
   width: 15em;
@@ -74,49 +116,103 @@ nav{
   width: 5em;
   height: 2em;
   align-content: center;
-  background-color:  #417a4b;
+  background-color:  #FF8566;
   border-radius: 0.8em;
+  transition: all 0.2s ease-in-out;
 }
 .btn:hover{
-  box-shadow: rgba(82, 119, 85, 0.348) 0.2rem 0.125rem 0.125rem;
-  cursor: pointer;
-}
+  box-shadow: 0 2em 4em rgba(0, 0, 0, 0.3), 0 -2em 6em rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.1em);}
 main{
   min-height: 30em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     color: #ffffff;
-    background-color: rgba(38, 115, 38, 0.847);
-    border-radius: 1em;
+    background-color: #2C2C2C  ;
+    border-radius: 1.2em;
     margin: 0.4em;
-    box-shadow: rgba(10, 35, 1, 0.348) 0.5rem 0.2rem 0.2rem;
+    padding: 1em;
+    gap: 3em;
+    box-shadow: #FF8566 0.2em 0.2em 0.8em, #FF8566 -0.2rem 0.1rem 0.8em;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}
+.no-data{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.filter{
+  display: flex;
+    height: 3em;
+    flex-wrap: wrap;
     align-content: center;
 }
+.filter .controls{
+  display: flex;
+  height: 1.5em;
+  gap: 1em;
+  /* margin: 0.2em 0em 0.2em 0em; */
+}
 .movie-list{
-  display: inline-flex;
-  gap: 0.3em;
-  justify-content: flex-start;
-  align-items: start;
-  justify-items: start;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: flex;
+    gap: 0.1em;
+    justify-content: space-evenly;
+    justify-items: start;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }
 .mv-card{
-  max-width: 10em;
-  max-height: 15em;
-  font-weight: 100;
-  background-color: #283a2b;
-  color: #ffffff;
-  border-radius: 0.4em;
-  padding: 1em;
-  margin: 1em;
+  display: flex;
+    width: 10em;
+    height: 15em;
+    background-color: #2C2C2C;
+    color: #ffffff;
+    border: 0.4em solid #2C2C2C;
+    border-radius: 0.4em;
+    padding: 1em;
+    margin: 0.2em;
+    box-shadow: 0 4em 4em rgba(0, 0, 0, 0.3), 0 -4em 6em rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.mv-card h2{
+  margin: 0em;
+}
+.mv-card h3{
+  margin: 0em;
+}
+.mv-card button{
+  text-align: center;
+  width: fit-content;
+  height: auto;
+    border: 0em;
+    border-radius: 0.5em;
+    background-color: #FF8566;
+    color: #ffffff;
+    font-family: Lexend-Regular;
+    font-weight: 400;
+    box-shadow: #2C2C2C 0.2rem 0.125rem 0.125rem;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+.mv-card button:hover{
+  transform: translateY(-0.1em);
 }
 .mv-card:hover{
-  box-shadow: rgba(0, 0, 0, 0.348) 0.3rem 0.2rem 0.2rem;
+  box-shadow: #FF8566 0.3rem 0.2rem 0.8rem, #FF8566 -0.3rem -0.2rem 0.8rem;
+  background-color: #3A3A3A;
+  border: 2px solid #FF8566;
   cursor: pointer;
+  transform: translateY(-0.1em);
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'Lexend-Regular';
+    src: url('./fonts/Lexend-Regular.ttf') format('truetype');
+}
+select{
+    text-align: center;
+    border: 0em;
+    border-radius: 0.5em;
+    background-color: #FF8566;
+    color: #ffffff;
+    font-family: Lexend-Regular;
+    font-weight: 400;
+    box-shadow: #2C2C2C 0.2rem 0.125rem 0.125rem;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+select:hover{
+    transform: translateY(-0.1em);
+}
