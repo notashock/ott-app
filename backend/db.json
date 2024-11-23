@@ -1,0 +1,99 @@
+{
+  "movie": [
+    {
+      "id": "1",
+      "name": "Vettiyan",
+      "Rating": 7.5,
+      "genre": "Action"
+    },
+    {
+      "id": "2",
+      "name": "Swag",
+      "Rating": 7.8,
+      "genre": "Comedy"
+    },
+    {
+      "id": "3",
+      "name": "Tholiprema",
+      "Rating": 7.2,
+      "genre": "Romantic"
+    },
+    {
+      "id": "4",
+      "name": "Adhurs",
+      "Rating": 6.7,
+      "genre": "Comedy"
+    },
+    {
+      "id": "5",
+      "name": "Badshaah",
+      "Rating": 6.9,
+      "genre": "Action"
+    },
+    {
+      "id": "6",
+      "name": "Animal",
+      "Rating": 6.1,
+      "genre": "Violent"
+    },
+    {
+      "id": "7",
+      "name": "365 days",
+      "Rating": 3.3,
+      "genre": ""
+    },
+    {
+      "id": "8",
+      "name": "lust stories",
+      "Rating": 6.4,
+      "genre": ""
+    },
+    {
+      "id": "9",
+      "name": "pokiri",
+      "Rating": 8,
+      "genre": "Action"
+    },
+    {
+      "id": "10",
+      "name": "Bahubali",
+      "Rating": 8,
+      "genre": "Drama"
+    },
+    {
+      "id": "11",
+      "name": "HanuMan",
+      "Rating": 7.8,
+      "genre": ""
+    },
+    {
+      "id": "12",
+      "name": "Interstellar",
+      "Rating": 8.7,
+      "genre": "Sci-Fi"
+    },
+    {
+      "id": "13",
+      "name": "Gravity",
+      "Rating": 7.7,
+      "genre": "Sci-Fi"
+    },
+    {
+      "id": "14",
+      "name": "Raja The Great",
+      "Rating": 9,
+      "genre": "Comedy"
+    }
+  ],
+  "watchlist": [],
+  "user": [
+    {
+      "name": "typicode",
+      "id": "54ca"
+    },
+    {
+      "email": "test@gmail.com",
+      "id": "b74a"
+    }
+  ]
+}
