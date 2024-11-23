@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import App from './App';
-import Auth from './Auth';
+import Auth from '../src/unused_comp/Auth';
 
 const Home = () => {
     const [isAuth, setAuth] = useState(true);

@@ -3,14 +3,16 @@ import "./App.css";
 import MovieCard from "./MovieCard";
 import Fetcher from "./Fetcher";
 import Filter from "./Filter";
+import Watch from "./Watch";
+import axios from "axios";
 
 function App() {
   const [view, setView] = useState("movies");
-  const [allMovies, setAllMovies] = useState([]); // Stores all fetched movies
-  const [filteredMovies, setFilteredMovies] = useState([]); // Stores filtered and sorted movies
-  const [watchlist, setWatchlist] = useState([]); // Stores watchlist movies
+  const [allMovies, setAllMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  // Memoize handleMoviesFetched to prevent unnecessary re-renders
   const handleMoviesFetched = useCallback(
     (moviesData) => {
       if (view === "movies") {
@@ -23,7 +25,7 @@ function App() {
     [view]
   );
 
-  // Memoize handleFilter to prevent re-renders
+  // Memoized filter functions to avoid unnecessary re-renders
   const handleFilter = useCallback((filteredData) => {
     setFilteredMovies(filteredData);
   }, []);
@@ -32,9 +34,25 @@ function App() {
     setView(newView);
   };
 
+  const handleInput = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleDeleteFromWatchlist = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/watchlist/${id}`);
+      setWatchlist((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== id));
+    } catch (error) {
+      console.error("Error deleting movie from watchlist:", error);
+    }
+  };
+
   return (
     <div className="App">
       <nav>
+        <div className="title">
+          <h1>StreamSavy</h1>
+        </div>
         <div className="nav-bar">
           <div
             className={`Movies${view === "movies" ? "_active" : ""}`}
@@ -55,6 +73,8 @@ function App() {
               type="text"
               name="search"
               id="search"
+              value={inputValue}
+              onChange={handleInput}
               placeholder="Search..."
             />
           </div>
@@ -63,30 +83,45 @@ function App() {
       </nav>
 
       <main>
-        {/* Show Filter only for movies view */}
-        {view === "movies" && (
-          <div className="filter">
-            <Filter Movies={allMovies} onFilter={handleFilter} />
+      <div className="filter">
+            <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
           </div>
-        )}
+        {/* {view === "movies" ? (
+          <div className="filter">
+            <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
+          </div>
+        ) : (
+          <div className="filter">
+            <Filter Movies={watchlist} search={inputValue} onFilter={handleFilter} />
+          </div>
+        )} */}
 
-        {/* Fetcher dynamically fetches data for movies or watchlist */}
         <Fetcher
           onMoviesFetched={handleMoviesFetched}
           endpoint={view === "movies" ? "movie" : "watchlist"}
         />
 
-        {/* Movie List */}
         <div className="movie-list">
           {(view === "movies" ? filteredMovies : watchlist).length > 0 ? (
-            (view === "movies" ? filteredMovies : watchlist).map((movie) => (
-              <MovieCard
-                key={movie.id}
-                name={movie.name}
-                rating={movie.Rating}
-                view={view === "movies" ? "Add to Watchlist" : "Remove"}
-              />
-            ))
+            (view === "movies" ? filteredMovies : watchlist).map((movie) =>
+              view === "movies" ? (
+                <MovieCard
+                  key={movie.id}
+                  name={movie.name}
+                  rating={movie.Rating}
+                  genre={movie.genre}
+                />
+              ) : (
+                <Watch
+                  key={movie.id}
+                  id={movie.id}
+                  name={movie.name}
+                  rating={movie.Rating}
+                  genre={movie.genre}
+                  onDelete={handleDeleteFromWatchlist}
+                />
+              )
+            )
           ) : (
             <div className="no-data">
               {view === "movies"
