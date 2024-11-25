@@ -110,7 +110,6 @@ function App() {
                   name={movie.name}
                   rating={movie.Rating}
                   genre={movie.genre}
-                  src={movie.url}
                 />
               ) : (
                 <Watch
