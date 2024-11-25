@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Ensure axios is imported
 
-const MovieCard = ({ name, rating, genre,}) => {
+const MovieCard = ({ name, rating, genre, src}) => {
   const [watch, setWatch] = useState(false); 
   const defaultImage = "https://via.placeholder.com/150";
     // try{
@@ -57,7 +57,7 @@ const MovieCard = ({ name, rating, genre,}) => {
 
   return (
     <div className="mv-card">
-      <img src={defaultImage} alt="movie" />
+      <img src={src} alt="movie" />
       <h3>{name}</h3>
       <p>Genre: {genre}</p>
       <p>Rating: {rating}</p>

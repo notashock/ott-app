@@ -4,13 +4,15 @@
       "id": "1",
       "name": "Vettiyan",
       "Rating": 7.5,
-      "genre": "Action"
+      "genre": "Action",
+      "url": "https://images.app.goo.gl/Qvr4GPACvAcwYx9d9"
     },
     {
       "id": "2",
       "name": "Swag",
       "Rating": 7.8,
-      "genre": "Comedy"
+      "genre": "Comedy",
+      "url": "https://images.app.goo.gl/dWS2XD7kNzq4aTveA"
     },
     {
       "id": "3",
@@ -38,54 +40,49 @@
     },
     {
       "id": "7",
-      "name": "365 days",
-      "Rating": 3.3,
-      "genre": ""
-    },
-    {
-      "id": "8",
-      "name": "lust stories",
-      "Rating": 6.4,
-      "genre": ""
-    },
-    {
-      "id": "9",
       "name": "pokiri",
       "Rating": 8,
       "genre": "Action"
     },
     {
-      "id": "10",
+      "id": "8",
       "name": "Bahubali",
       "Rating": 8,
       "genre": "Drama"
     },
     {
-      "id": "11",
+      "id": "9",
       "name": "HanuMan",
       "Rating": 7.8,
-      "genre": ""
+      "genre": "Drama"
     },
     {
-      "id": "12",
+      "id": "10",
       "name": "Interstellar",
       "Rating": 8.7,
       "genre": "Sci-Fi"
     },
     {
-      "id": "13",
+      "id": "11",
       "name": "Gravity",
       "Rating": 7.7,
       "genre": "Sci-Fi"
     },
     {
-      "id": "14",
+      "id": "12",
       "name": "Raja The Great",
       "Rating": 9,
       "genre": "Comedy"
     }
   ],
-  "watchlist": [],
+  "watchlist": [
+    {
+      "id": "1",
+      "name": "Tholiprema",
+      "Rating": 7.2,
+      "genre": "Romantic"
+    }
+  ],
   "user": [
     {
       "name": "typicode",
