@@ -75,14 +75,7 @@
       "genre": "Comedy"
     }
   ],
-  "watchlist": [
-    {
-      "id": "1",
-      "name": "Tholiprema",
-      "Rating": 7.2,
-      "genre": "Romantic"
-    }
-  ],
+  "watchlist": [],
   "user": [
     {
       "name": "typicode",
