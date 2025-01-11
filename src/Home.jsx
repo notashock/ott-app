@@ -4,7 +4,7 @@ import Auth from '../src/Auth';
 
 const Home = () => {
     const [name, setName] = useState("Savy");
-    const [isLogin, setLogin] = useState(false);
+    const [isLogin, setLogin] = useState(true);
     const handleAuthSuccess = (username, isLogin) =>{
         setName(username);
         setLogin(isLogin);

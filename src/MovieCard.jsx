@@ -3,7 +3,7 @@ import axios from 'axios'; // Ensure axios is imported
 
 const MovieCard = ({ name, rating, genre}) => {
   const [watch, setWatch] = useState(false); 
-  const defaultImage = "https://via.placeholder.com/150";
+  const defaultImage = "https://dummyimage.com/150x150/000/fff";
     // try{
     //   const response = await axios.get("http://localhost:3000/watchlist");
     //   const watchlist = response.data;

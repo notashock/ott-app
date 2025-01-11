@@ -6,26 +6,20 @@ import Filter from "./Filter";
 import Watch from "./Watch";
 import axios from "axios";
 
-function App( {name} ) {
+function App({ name }) {
   const [view, setView] = useState("movies");
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   const handleMoviesFetched = useCallback(
-    (moviesData) => {
-      if (view === "movies") {
-        setAllMovies(moviesData);
-        setFilteredMovies(moviesData);
-      } else if (view === "watchlist") {
-        setWatchlist(moviesData);
-      }
+    (data) => {
+      setAllMovies(data);
+      setFilteredMovies(data);
     },
     [view]
   );
 
-  // Memoized filter functions to avoid unnecessary re-renders
   const handleFilter = useCallback((filteredData) => {
     setFilteredMovies(filteredData);
   }, []);
@@ -41,7 +35,7 @@ function App( {name} ) {
   const handleDeleteFromWatchlist = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/watchlist/${id}`);
-      setWatchlist((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== id));
+      setAllMovies((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== id));
     } catch (error) {
       console.error("Error deleting movie from watchlist:", error);
     }
@@ -83,32 +77,24 @@ function App( {name} ) {
       </nav>
 
       <main>
-      <div className="filter">
-            <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
-          </div>
-        {/* {view === "movies" ? (
-          <div className="filter">
-            <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
-          </div>
-        ) : (
-          <div className="filter">
-            <Filter Movies={watchlist} search={inputValue} onFilter={handleFilter} />
-          </div>
-        )} */}
+        <div className="filter">
+          <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
+        </div>
 
         <Fetcher
+          view={view}
           onMoviesFetched={handleMoviesFetched}
           endpoint={view === "movies" ? "movie" : "watchlist"}
         />
 
         <div className="movie-list">
-          {(view === "movies" ? filteredMovies : watchlist).length > 0 ? (
-            (view === "movies" ? filteredMovies : watchlist).map((movie) =>
+          {filteredMovies.length > 0 ? 
+            (filteredMovies.map((movie) =>
               view === "movies" ? (
                 <MovieCard
                   key={movie.id}
                   name={movie.name}
-                  rating={movie.Rating}
+                  rating={movie.rating}
                   genre={movie.genre}
                 />
               ) : (
@@ -116,7 +102,7 @@ function App( {name} ) {
                   key={movie.id}
                   id={movie.id}
                   name={movie.name}
-                  rating={movie.Rating}
+                  rating={movie.rating}
                   genre={movie.genre}
                   onDelete={handleDeleteFromWatchlist}
                 />
