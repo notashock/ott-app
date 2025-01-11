@@ -6,7 +6,7 @@ import Filter from "./Filter";
 import Watch from "./Watch";
 import axios from "axios";
 
-function App() {
+function App( {name} ) {
   const [view, setView] = useState("movies");
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -51,7 +51,7 @@ function App() {
     <div className="App">
       <nav>
         <div className="title">
-          <h1>StreamSavy</h1>
+          <h1>Hey {name}</h1>
         </div>
         <div className="nav-bar">
           <div

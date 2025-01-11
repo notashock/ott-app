@@ -76,14 +76,14 @@
     }
   ],
   "watchlist": [],
-  "user": [
+  "login": [
     {
-      "name": "typicode",
-      "id": "54ca"
+      "username": "test@gmail.com",
+      "password": "b74a"
     },
     {
-      "email": "test@gmail.com",
-      "id": "b74a"
+      "username": "test@gmail.com",
+      "password": "Dhathri@25"
     }
   ]
 }

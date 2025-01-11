@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import App from './App';
-import Auth from '../src/unused_comp/Auth';
+import App from '../src/App';
+import Auth from '../src/Auth';
 
 const Home = () => {
-    const [isAuth, setAuth] = useState(true);
-    const handleAuthSuccess = () =>{
-        setAuth(true);
+    const [name, setName] = useState("Savy");
+    const [isLogin, setLogin] = useState(false);
+    const handleAuthSuccess = (username, isLogin) =>{
+        setName(username);
+        setLogin(isLogin);
     }
+    
   return (
     <div>
-        {isAuth ? <App /> : <Auth onAuthSuccess={handleAuthSuccess()} />}
+        {isLogin ? <App name= {name}/> : <Auth onLoginSuccess={handleAuthSuccess}/>}
     </div>
   )
 }
