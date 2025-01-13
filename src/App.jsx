@@ -9,29 +9,20 @@ import axios from "axios";
 function App({ name }) {
   const [view, setView] = useState("movies");
   const [allMovies, setAllMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   const handleMoviesFetched = useCallback(
-    (data) => {
+    (data, watch) => {
       setAllMovies(data);
-      setFilteredMovies(data);
-    },
-    [view]
+      setWatchlist(watch);
+    },[]
   );
-
   const handleFilter = useCallback((filteredData) => {
     setFilteredMovies(filteredData);
   }, []);
-
-  const handleNavClick = (newView) => {
-    setView(newView);
-  };
-
-  const handleInput = (event) => {
-    setInputValue(event.target.value);
-  };
-
+  
   const handleDeleteFromWatchlist = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/watchlist/${id}`);
@@ -50,13 +41,13 @@ function App({ name }) {
         <div className="nav-bar">
           <div
             className={`Movies${view === "movies" ? "_active" : ""}`}
-            onClick={() => handleNavClick("movies")}
+            onClick={() => {setView("movies");}}
           >
             Movies
           </div>
           <div
             className={`Watchlist${view === "watchlist" ? "_active" : ""}`}
-            onClick={() => handleNavClick("watchlist")}
+            onClick={() => {setView("watchlist");}}
           >
             Watchlist
           </div>
@@ -68,7 +59,7 @@ function App({ name }) {
               name="search"
               id="search"
               value={inputValue}
-              onChange={handleInput}
+              onChange={(e)=>{setInputValue(e.target.value);}}
               placeholder="Search..."
             />
           </div>
@@ -78,15 +69,12 @@ function App({ name }) {
 
       <main>
         <div className="filter">
-          <Filter Movies={allMovies} search={inputValue} onFilter={handleFilter} />
+          <Filter Movies={view==="movies"? allMovies : watchlist} search={inputValue} onFilter={handleFilter} />
         </div>
-
         <Fetcher
           view={view}
           onMoviesFetched={handleMoviesFetched}
-          endpoint={view === "movies" ? "movie" : "watchlist"}
         />
-
         <div className="movie-list">
           {filteredMovies.length > 0 ? 
             (filteredMovies.map((movie) =>
@@ -94,7 +82,7 @@ function App({ name }) {
                 <MovieCard
                   key={movie.id}
                   name={movie.name}
-                  rating={movie.rating}
+                  Rating={movie.Rating}
                   genre={movie.genre}
                 />
               ) : (
@@ -102,7 +90,7 @@ function App({ name }) {
                   key={movie.id}
                   id={movie.id}
                   name={movie.name}
-                  rating={movie.rating}
+                  Rating={movie.Rating}
                   genre={movie.genre}
                   onDelete={handleDeleteFromWatchlist}
                 />

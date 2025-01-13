@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Ensure axios is imported
 
-const MovieCard = ({ name, rating, genre}) => {
+const MovieCard = ({ name, Rating, genre}) => {
   const [watch, setWatch] = useState(false); 
   const defaultImage = "https://dummyimage.com/150x150/000/fff";
     // try{
@@ -21,11 +21,12 @@ const MovieCard = ({ name, rating, genre}) => {
   const handleClick = async () => {
     try {
       // Get current watchlist
-      const response = await axios.get("http://localhost:3000/watchlist");
-      const watchlist = response.data;
+      const response = await fetch("/api/watchlist");
+      const watchlist = response.json();
 
       // Check if the movie already exists in the watchlist
-      const exists = watchlist.some((movie) => movie.name === name);
+      const movie = watchlist.data;
+      const exists = movie.some((movie) => movie.name === name);
 
       if (!exists) {
         // Find the next ID by incrementing the highest ID in the current watchlist
@@ -37,7 +38,7 @@ const MovieCard = ({ name, rating, genre}) => {
         const movieToAdd = {
           id: nextId.toString(),
           name: name,
-          Rating: rating,
+          Rating: Rating,
           genre: genre || "", // Ensure genre is not undefined
         };
 
@@ -60,7 +61,7 @@ const MovieCard = ({ name, rating, genre}) => {
       <img src={defaultImage} alt="movie" />
       <h3>{name}</h3>
       <p>Genre: {genre}</p>
-      <p>Rating: {rating}</p>
+      <p>Rating: {Rating}</p>
       <button onClick={handleClick}>
         {watch ? "Added to Watchlist" : "Add to Watchlist"}
       </button>

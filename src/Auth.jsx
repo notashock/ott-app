@@ -7,7 +7,7 @@ const Auth = ({ onLoginSuccess }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('/api/login');
+      const response = await fetch('/movie');
       const users = await response.json();
       const user = users.find(user => user.username === username && user.password === password);
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Watch = ({ id, name, rating, genre, onDelete }) => {
-  const defaultImage = "https://via.placeholder.com/150";
+  const defaultImage = "https://dummyimage.com/150x150/000/fff";
   return (
     <div className="mv-card">
       <img src={defaultImage} alt="movie" />
