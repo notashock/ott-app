@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import App from '../src/App';
-import Auth from '../src/Auth';
+import App from '../components/App';
+import Auth from '../components/Auth';
 
 const Home = () => {
     const [name, setName] = useState("Savy");

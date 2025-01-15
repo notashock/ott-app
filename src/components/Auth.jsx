@@ -56,7 +56,7 @@ const Auth = ({ onLoginSuccess }) => {
               <p>Remember me</p>
             </div>
             <div className="forget">
-              Forgot your Password? <a href="#">Click here</a>
+              Forgot your Password? <a href="/#">Click here</a>
             </div>
             <button onClick={handleLogin}>{isLogin ? "Login" : "Signup"}</button>
           </div>

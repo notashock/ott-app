@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Fetcher({ view, onMoviesFetched }) {
+function Fetcher({ watch, onMoviesFetched }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from "react";
-import "./App.css";
-import MovieCard from "./MovieCard";
-import Fetcher from "./Fetcher";
-import Filter from "./Filter";
-import Watch from "./Watch";
+import "../App.css";
+import MovieCard from "../components/MovieCard";
+import Fetcher from "../components/Fetcher";
+import Filter from "../components/Filter";
+import Watch from "../components/Watch";
 import axios from "axios";
 
 function App({ name }) {
@@ -22,15 +22,10 @@ function App({ name }) {
   const handleFilter = useCallback((filteredData) => {
     setFilteredMovies(filteredData);
   }, []);
-  
-  const handleDeleteFromWatchlist = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/watchlist/${id}`);
-      setAllMovies((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== id));
-    } catch (error) {
-      console.error("Error deleting movie from watchlist:", error);
-    }
-  };
+  const handleDelete = useCallback((id)=>{
+    const updatedWatchlist = watchlist.filter((movie) => {return movie.id !== id ? movie : ""});
+    setWatchlist(updatedWatchlist);
+  })
 
   return (
     <div className="App">
@@ -71,12 +66,9 @@ function App({ name }) {
         <div className="filter">
           <Filter Movies={view==="movies"? allMovies : watchlist} search={inputValue} onFilter={handleFilter} />
         </div>
-        <Fetcher
-          view={view}
-          onMoviesFetched={handleMoviesFetched}
-        />
+        <Fetcher watch={watchlist} onMoviesFetched={handleMoviesFetched} />
         <div className="movie-list">
-          {filteredMovies.length > 0 ? 
+          {filteredMovies.length > 0 || filteredMovies.id !== "null" ? 
             (filteredMovies.map((movie) =>
               view === "movies" ? (
                 <MovieCard
@@ -84,6 +76,8 @@ function App({ name }) {
                   name={movie.name}
                   Rating={movie.Rating}
                   genre={movie.genre}
+                  watchlist={watchlist}
+                  onAdd={(data)=> setWatchlist(data)}
                 />
               ) : (
                 <Watch
@@ -92,7 +86,7 @@ function App({ name }) {
                   name={movie.name}
                   Rating={movie.Rating}
                   genre={movie.genre}
-                  onDelete={handleDeleteFromWatchlist}
+                  onDelete={handleDelete}
                 />
               )
             )

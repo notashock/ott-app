@@ -1,100 +1,48 @@
 import express from "express";
+import fs from "fs";
+
+
 
 const app = express();
+app.use(express.json());
 app.get('/data', (req, res) => {
-  res.send({
-    "movie": [
-      {
-        "id": "1",
-        "name": "Vettiyan",
-        "Rating": 7.5,
-        "genre": "Action",
-        "url": "https://images.app.goo.gl/Qvr4GPACvAcwYx9d9"
-      },
-      {
-        "id": "2",
-        "name": "Swag",
-        "Rating": 7.8,
-        "genre": "Comedy",
-        "url": "https://images.app.goo.gl/dWS2XD7kNzq4aTveA"
-      },
-      {
-        "id": "3",
-        "name": "Tholiprema",
-        "Rating": 7.2,
-        "genre": "Romantic"
-      },
-      {
-        "id": "4",
-        "name": "Adhurs",
-        "Rating": 6.7,
-        "genre": "Comedy"
-      },
-      {
-        "id": "5",
-        "name": "Badshaah",
-        "Rating": 6.9,
-        "genre": "Action"
-      },
-      {
-        "id": "6",
-        "name": "Animal",
-        "Rating": 6.1,
-        "genre": "Violent"
-      },
-      {
-        "id": "7",
-        "name": "pokiri",
-        "Rating": 8,
-        "genre": "Action"
-      },
-      {
-        "id": "8",
-        "name": "Bahubali",
-        "Rating": 8,
-        "genre": "Drama"
-      },
-      {
-        "id": "9",
-        "name": "HanuMan",
-        "Rating": 7.8,
-        "genre": "Drama"
-      },
-      {
-        "id": "10",
-        "name": "Interstellar",
-        "Rating": 8.7,
-        "genre": "Sci-Fi"
-      },
-      {
-        "id": "11",
-        "name": "Gravity",
-        "Rating": 7.7,
-        "genre": "Sci-Fi"
-      },
-      {
-        "id": "12",
-        "name": "Raja The Great",
-        "Rating": 9,
-        "genre": "Comedy"
+  fs.readFile("./data.json", (err, data)=>{
+    if(err){
+      res.status(500).send("Error reading data file");
+    }
+    res.send(JSON.parse(data));
+  });
+});
+app.post('/data', (req, res) => {
+  fs.readFile("./data.json", (err, data)=>{
+    if(err){
+      res.status(500).send("Error reading data file");
+    }
+    const { watchlist } = req.body;
+    const dataObj = JSON.parse(data);
+    dataObj.watchlist = [...dataObj.watchlist, watchlist];
+    fs.writeFile("./data.json", JSON.stringify(dataObj), (err)=>{
+      if(err){
+        res.status(500).send("Error writing data file");
       }
-    ],
-    "watchlist": [
-      {
-        "id": "1",
-        "name": "Vettiyan",
-        "Rating": 7.5,
-        "genre": "Action",
-        "url": "https://images.app.goo.gl/Qvr4GPACvAcwYx9d9"
-      },
-      {
-        "id": "2",
-        "name": "Swag",
-        "Rating": 7.8,
-        "genre": "Comedy",
-        "url": "https://images.app.goo.gl/dWS2XD7kNzq4aTveA"
-      }
-    ]
+      res.send("Data written successfully");
+    });
+  });
+})
+app.delete('/data', (req, res)=>{
+  fs.readFile("./data.json", (err, data)=>{
+    if(err){
+      res.status(500).send("Error reading data file");
+    }
+    const { id } = req.body;
+    const dataObj = JSON.parse(data);
+    dataObj.watchlist = dataObj.watchlist.filter((movie) => movie.id !== id);
+    fs.writeFile("./data.json", JSON.stringify(dataObj), (err)=>{
+      if(err){
+        res.status(500).send("Error writing data file");
+      } 
+      res.send("Data written successfully");
+    });
   });
 });
 app.get("/login", (req, res)=>{
