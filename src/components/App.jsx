@@ -1,10 +1,9 @@
 import React, { useState, useCallback } from "react";
-import "../App.css";
 import MovieCard from "../components/MovieCard";
 import Fetcher from "../components/Fetcher";
 import Filter from "../components/Filter";
 import Watch from "../components/Watch";
-import axios from "axios";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function App({ name }) {
   const [view, setView] = useState("movies");
@@ -17,59 +16,67 @@ function App({ name }) {
     (data, watch) => {
       setAllMovies(data);
       setWatchlist(watch);
-    },[]
+    }, []
   );
+
   const handleFilter = useCallback((filteredData) => {
     setFilteredMovies(filteredData);
   }, []);
-  const handleDelete = useCallback((id)=>{
-    const updatedWatchlist = watchlist.filter((movie) => {return movie.id !== id ? movie : ""});
+
+  const handleDelete = useCallback((id) => {
+    const updatedWatchlist = watchlist.filter((movie) => movie.id !== id);
     setWatchlist(updatedWatchlist);
-  })
+  });
 
   return (
-    <div className="App">
-      <nav>
-        <div className="title">
-          <h1>Hey {name}</h1>
-        </div>
-        <div className="nav-bar">
+    <div className="min-h-screen bg-[#1F1F1F] text-white flex flex-col items-center gap-6">
+      <nav className="flex justify-evenly items-center bg-[#2C2C2C] text-white p-6 rounded-lg shadow-md w-full max-w-screen-xl">
+        <h1 className="text-3xl font-bold">Hey {name}</h1>
+
+        <div className="flex gap-8">
           <div
-            className={`Movies${view === "movies" ? "_active" : ""}`}
-            onClick={() => {setView("movies");}}
+            className={`cursor-pointer px-4 py-2 rounded-lg ${view === "movies" ? "bg-[#FF8566] text-black" : "hover:bg-gray-700"}`}
+            onClick={() => setView("movies")}
           >
             Movies
           </div>
           <div
-            className={`Watchlist${view === "watchlist" ? "_active" : ""}`}
-            onClick={() => {setView("watchlist");}}
+            className={`cursor-pointer px-4 py-2 rounded-lg ${view === "watchlist" ? "bg-[#FF8566] text-black" : "hover:bg-gray-700"}`}
+            onClick={() => setView("watchlist")}
           >
             Watchlist
           </div>
         </div>
-        <div className="search-btn">
-          <div className="search-bar">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              value={inputValue}
-              onChange={(e)=>{setInputValue(e.target.value);}}
-              placeholder="Search..."
-            />
-          </div>
-          <div className="btn">Sign In</div>
+
+        <div className="flex items-center gap-4">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Search..."
+            className="bg-[#FF8566] text-white rounded-lg px-4 py-2 outline-none"
+          />
+          <button className="bg-[#FF8566] text-white px-6 py-2 rounded-lg hover:bg-[#FF7050]">
+            Sign In
+          </button>
+        </div>
+        <div className="">
+          <ThemeSwitcher />
         </div>
       </nav>
 
-      <main>
-        <div className="filter">
-          <Filter Movies={view==="movies"? allMovies : watchlist} search={inputValue} onFilter={handleFilter} />
-        </div>
+      <main className="w-full max-w-screen-xl p-6 flex flex-col gap-8 bg-[#2C2C2C] rounded-lg shadow-md">
+        <Filter 
+          Movies={view === "movies" ? allMovies : watchlist}
+          search={inputValue}
+          onFilter={handleFilter}
+        />
+
         <Fetcher watch={watchlist} onMoviesFetched={handleMoviesFetched} />
-        <div className="movie-list">
-          {filteredMovies.length > 0 || filteredMovies.id !== "null" ? 
-            (filteredMovies.map((movie) =>
+
+        <div className="flex flex-wrap gap-4 justify-center">
+          {filteredMovies.length > 0 ? (
+            filteredMovies.map((movie) =>
               view === "movies" ? (
                 <MovieCard
                   key={movie.id}
@@ -77,7 +84,7 @@ function App({ name }) {
                   Rating={movie.Rating}
                   genre={movie.genre}
                   watchlist={watchlist}
-                  onAdd={(data)=> setWatchlist(data)}
+                  onAdd={(data) => setWatchlist(data)}
                 />
               ) : (
                 <Watch
@@ -91,7 +98,7 @@ function App({ name }) {
               )
             )
           ) : (
-            <div className="no-data">
+            <div className="text-center text-gray-400">
               {view === "movies"
                 ? "No movies available."
                 : "No watchlist items available."}
