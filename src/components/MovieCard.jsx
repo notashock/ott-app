@@ -52,18 +52,18 @@ const MovieCard = ({ name, Rating, genre, watchlist, onAdd }) => {
   };
 
   return (
-    <div className="flex flex-col items-start gap-3 w-[10em] h-[20em] bg-[#383636] text-white p-4 rounded-md shadow-md transition-all hover:translate-y-[-4px] hover:shadow-lg">
+    <div className="flex flex-col items-start gap-3 w-60 h-[22em] bg-[#383636] text-white p-4 rounded-md shadow-md border-transparent border-2 transition-all hover:border-accent hover:text-text hover:translate-y-[-4px] hover:shadow-lg">
       <img src={defaultImage} alt="movie" className="w-full h-[10em] object-cover rounded-md" />
       <h3 className="text-lg font-semibold">{name}</h3>
       <p className="text-sm">Genre: {genre || "N/A"}</p>
       <p className="text-sm">Rating: {Rating || "N/A"}</p>
       <button
         onClick={handleClick}
-        className={`px-2 py-1 rounded-md text-white font-medium ${
-          watch ? "bg-green-500 cursor-not-allowed" : "bg-[#FF8566] hover:bg-[#ed4f2b] cursor-pointer"
+        className={`w-40 h-20 px-2 py-1 rounded-md text-white font-medium ${
+          watch ? "bg-green-500 cursor-not-allowed" : "border-2 border-transparent hover:border-accent"
         }`}
       >
-        {watch ? "Added to Watchlist" : "Add to Watchlist"}
+        {watch ? "Added" : "Add to Watchlist"}
       </button>
     </div>
   );

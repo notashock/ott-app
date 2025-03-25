@@ -1,11 +1,28 @@
+@font-face {
+  font-family: 'Lexend';
+  src: url("./fonts/Lexend-Regular.ttf") format('truetype');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background: #1f1f1f;
+body {
+  font-family: 'Lexend';
 }
-.dark{
-  background-color: white;
-  color: black;
+@layer components{
+  .nav-bar{
+    @apply flex justify-between items-center bg-primary text-text p-6 rounded-3xl shadow-md w-full max-w-screen-xl;
+  }
+  .links{
+    @apply cursor-pointer px-4 py-2 rounded-lg;
+  }
+  .main{
+    @apply w-full max-w-screen-xl p-6 flex flex-col gap-8 bg-primary rounded-3xl shadow-md;
+  }
+}
+@layer utilities{
+  .scrollbar-hide::-webkit-scrollbar{
+    display: none;
+  }
 }

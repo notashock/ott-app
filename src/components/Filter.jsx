@@ -22,7 +22,7 @@ const Filter = ({ Movies, search, onFilter }) => {
   return (
     <div className="flex gap-6 flex-wrap justify-center items-center">
       <select
-        className="px-4 py-2 rounded-md bg-[#FF8566] text-white font-medium cursor-pointer hover:bg-[#ff7050]"
+        className="px-3 py-1 rounded-full bg-transparent border-2 border-accent text-white font-medium cursor-pointer hover:bg-[#ff7050]"
         onChange={(e) => setFilter(e.target.value)}
         value={filter}
       >
@@ -34,7 +34,7 @@ const Filter = ({ Movies, search, onFilter }) => {
       </select>
 
       <select
-        className="px-4 py-2 rounded-md bg-[#FF8566] text-white font-medium cursor-pointer hover:bg-[#ff7050]"
+        className=" px-3 py-1 rounded-full bg-transparent border-2 border-accent text-white font-medium cursor-pointer hover:bg-[#ff7050]"
         onChange={(e) => setSortOrder(e.target.value)}
         value={sortOrder}
       >

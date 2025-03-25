@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import App from '../components/App';
-import Auth from '../components/Auth';
+// import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import App from '../pages/App';
+import Auth from '../pages/Auth';
 
 const Home = () => {
-    const [name, setName] = useState("Savy");
+    const [name, setName] = useState("Viber");
     const [isLogin, setLogin] = useState(true);
     const handleAuthSuccess = (username, isLogin) =>{
         setName(username);
@@ -12,7 +13,7 @@ const Home = () => {
     
   return (
     <div>
-        {isLogin ? <App name= {name}/> : <Auth onLoginSuccess={handleAuthSuccess}/>}
+      {isLogin ? <App name= {name}/> : <Auth onLoginSuccess={handleAuthSuccess}/>}
     </div>
   )
 }
